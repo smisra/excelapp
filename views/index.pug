@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  div(id='spreadsheet1')
+  script(src="/javascripts/application.js")
+  input(type='button',name="Save",value='Save',onclick="console.log(table.getData())")
+
