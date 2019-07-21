@@ -1,19 +1,18 @@
 var data1 = [
-    [ 'Cheese', 10, 1.10, '=B1*C1'],
-    [ 'Apples', 30, 0.40, '=B2*C2'],
-    [ 'Carrots', 15, 0.45, '=B3*C3'],
-    [ 'Oranges', 20, 0.49, '=B4*C4'],
+    [ 'medicine 1', 10, 1.10],
+    [ 'medicine 2', 30, 0.40],
+    [ 'ointment 1', 15, 0.45],
+    [ 'ointment 2', 20, 0.49],
 ];
 
 var table = jexcel(document.getElementById('spreadsheet1'), {
     data:data1,
-    colHeaders: [ 'Product', 'Quantity', 'Price', 'Total' ],
-    colWidths: [ 300, 100, 100, 100 ],
+    colHeaders: [ 'Product', 'Quantity', 'Price' ],
+    colWidths: [ 300, 100, 100 ],
     columns: [
-        { type: 'autocomplete', source:[ 'Apples','Bananas','Carrots','Oranges','Cheese','Pears' ] },
+        { type: 'autocomplete', source:[ 'medicine 1','medicine 2','ointment 1','ointment 2' ] },
         { type: 'number' },
-        { type: 'number' },
-        { type: 'number' },
+        { type: 'number' }
     ]
 });
 
@@ -21,11 +20,11 @@ function submitData(){
     $.ajax({
         type: "POST",
          url: window.location.href,
-         data: table.getData(),
+         data: JSON.stringify(table.getData()),
         success: function(response)
          {
             if($.trim(response) == 'success')
-                 window.location.replace("/success");        
+                 window.location.replace("/success");
             else
                 $("#result").html(response);
        }
