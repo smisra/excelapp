@@ -16,3 +16,18 @@ var table = jexcel(document.getElementById('spreadsheet1'), {
         { type: 'number' },
     ]
 });
+
+function submitData(){
+    $.ajax({
+        type: "POST",
+         url: window.location.href,
+         data: table.getData(),
+        success: function(response)
+         {
+            if($.trim(response) == 'success')
+                 window.location.replace("/success");        
+            else
+                $("#result").html(response);
+       }
+     });
+}
