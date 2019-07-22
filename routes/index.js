@@ -35,6 +35,7 @@ router.post('/:guid', function(req, res, next) {
   
 });
 async function createExcel(contents,guid){
+  console.log(contents);
   const workbook = new Excel.Workbook();
   const worksheet = workbook.addWorksheet("VetSheet");
   'Product', 'Quantity', 'Price'
@@ -43,9 +44,13 @@ worksheet.columns = [
  {header: 'Quantity', key: 'Quantity', width: 100}, 
  {header: 'Price', key: 'Price', width: 100,}
 ];
-
-worksheet.addRow({Product: 2, Quantity: 'Jane Doe', Price: new Date(1965, 1, 7)});
-
+arrays =  Object.keys(contents)[0];
+var json = JSON.parse(arrays);
+console.log( typeof json);
+for(var i = 0; i < json.length; i++){
+  console.log(json[i]);
+worksheet.addRow({Product: json[i][0], Quantity: json[i][1], Price: json[i][2]});
+}
 // save under export.xlsx
 await workbook.xlsx.writeFile(__dirname+'/../upload/'+guid+'/export.xlsx');
 
