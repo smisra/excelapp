@@ -5,13 +5,13 @@ const Excel = require('exceljs');
 
 /* GET Excel. */
 router.get('/:guid', function(req, res, next) {
-  guid = req.params.guid;
-  if(guid==""){console.log("No GUID passed");
+  guid_p = req.params.guid;
+  if(guid_p==""){console.log("No GUID passed");
   res.render('error', { title: 'No Guid' });
 }
-  if (fs.existsSync(__dirname+'/../upload/'+guid)) {
+  if (fs.existsSync(__dirname+'/../upload/'+guid_p)) {
     console.log('The file exists.');
-    res.render('index', { title: 'Express' });
+    res.render('index', { title: 'Express',guid: guid_p });
   }
   else{
     res.render('error', { title: 'No Guid',message: 'wrong link' });
