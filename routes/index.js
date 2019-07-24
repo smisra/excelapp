@@ -49,7 +49,7 @@ router.post('/:guid', function(req, res, next) {
   if (fs.existsSync(__dirname+'/../upload/'+guid)) {
     console.log('The file exists.');
     console.log(req.body);
-    createExcel(req.body,guid);
+    createJSON(req.body,guid);
     res.render({ success: 'success' });
   }
   else{
@@ -58,26 +58,17 @@ router.post('/:guid', function(req, res, next) {
   
 });
 
-async function createExcel(contents,guid){
+async function createJSON(contents,guid){
   console.log(contents);
-  const workbook = new Excel.Workbook();
-  const worksheet = workbook.addWorksheet("VetSheet");
-  'Product', 'Quantity', 'Price'
-worksheet.columns = [
- {header: 'Product', key: 'Product', width: 300},
- {header: 'Quantity', key: 'Quantity', width: 100}, 
- {header: 'Price', key: 'Price', width: 100,}
-];
-arrays =  Object.keys(contents)[0];
-var json = JSON.parse(arrays);
-console.log( typeof json);
-for(var i = 0; i < json.length; i++){
-  console.log(json[i]);
-worksheet.addRow({Product: json[i][0], Quantity: json[i][1], Price: json[i][2]});
-}
-// save under export.xlsx
-await workbook.xlsx.writeFile(__dirname+'/../upload/'+guid+'/export.xlsx');
 
+  var safe3 = new Safe(__dirname+"/../upload/"+guid_p+"/result.json", "password");
+  arrays =  Object.keys(contents)[0];
+  var json = JSON.parse(arrays);
+
+// save under export.xlsx
+await safe3.encrypt(json);
+
+ 
 
 console.log("File is written");
 
