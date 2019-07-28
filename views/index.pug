@@ -1,9 +1,39 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
-  div(id='spreadsheet1')
-  script(src="/javascripts/application.js")
-  input(type='button',name="Save",value='Save',onclick="submitData()")
+   .main.container
+    .row
+      .col-md-6.col-md-offset-3
+        h1.display-4.m-b-2 Claims Form
+
+        // claim form
+        form(method='POST' action='/!{guid}' name="claims")
+          div.form-group
+            label(for='PolNum') Policy Number:
+            input#polnum.form-control(type='text', placeholder='Policy Number' name='PolNum')
+          div.form-group
+            label(for='PolHolderName') Policy Holder Name:
+            input#polholname.form-control(type='text', placeholder='Full Name' name='PolHolderName')
+          div.form-group
+            label(for='Address1') Address Line 1:
+            input#address1.form-control(type='text', placeholder='Address Line 1' name='Address1')
+          div.form-group
+            label(for='Address2') Address Line 2:
+            input#address2.form-control(type='text', placeholder='Address Line 2' name='Address2')    
+          div.form-group
+            label(for='Postcode') Postcode:
+            input#postcode.form-control(type='text', placeholder='Post code' name='Postcode')
+          div.form-group
+            label(for='PetsBreed') Pet's Breed:
+            input#breed.form-control(type='text', placeholder='Petsbreed' name='PetsBreed')
+          div.form-group
+            label(for='treatmentcost') Treatment Cost:
+            input#treatmeantcost.form-control(type='text', placeholder='Treatmeant Cost' name='treatmentcost')
+          div.form-group
+            label(for='file1') File 1:
+            input#file1.form-control(type='file', placeholder='File 1' name='file1')      
+          div.form-group
+            label(for='file2') File 2:
+            input#file2.form-control(type='file', placeholder='File 2' name='file2')           
+          button.btn.btn-primary(type='submit') Submit
 

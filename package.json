@@ -1,6 +1,6 @@
 {
-  "name": "excelapp",
-  "version": "0.0.1",
+  "name": "vetclaimformapp",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "start": "node ./bin/www"
@@ -12,6 +12,7 @@
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1",
     "pug": "2.0.0-beta11",
-    "exceljs": "1.13.0"
+    "bootstrap": "4.3.1",
+    "multer": "1.4.2"
   }
 }

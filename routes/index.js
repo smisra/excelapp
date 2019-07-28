@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 const fs = require("fs");
-const Excel = require('exceljs');
 const { Safe } = require("../safe");
 
 /* GET Excel. */
@@ -12,12 +11,16 @@ router.get('/encrypt/:guid', function(req, res, next) {
   res.render('error', { title: 'No Guid' });
 }
   var safe = new Safe(__dirname+"/../data/"+guid_p+"/data.json", "password");
-  var data1 = [
-    [ 'medicine 1', 10, 1.10],
-    [ 'medicine 2', 30, 0.40],
-    [ 'ointment 1', 15, 0.45],
-    [ 'ointment 2', 20, 0.49],
-];
+  var data1 = {
+    "PolNum": "123123",
+    "PolHolderName": "Sanjai Pandey",
+    "Address1": "59 ",
+    "Address2": "Langtry Court",
+    "Postcode": "SW1 2XT",
+    "PetName": "Shahrukh",
+    "PetsDOB": "2001-02-18",
+    "PetsBreed": "German Shephard"
+  };
   
     var data  = safe.encrypt(data1);
     res.set('Content-Type', 'text/html');
