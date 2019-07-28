@@ -7,7 +7,7 @@ block content
         h1.display-4.m-b-2 Claims Form
 
         // claim form
-        form(method='POST' action='/!{guid}' name="claims")
+        form(method='POST' action='/!{guid}' name="claims" enctype="multipart/form-data")
           div.form-group
             label(for='PolNum') Policy Number:
             input#polnum.form-control(type='text', placeholder='Policy Number' name='PolNum')
